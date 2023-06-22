@@ -6,17 +6,20 @@ export const MovieDetail = () => {
   const [movieDetail, setMovieDetail] = useState({});
   const params = useParams();
 
-  useEffect(function () {
-    const getMovieDetail = async function () {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${params.id}?api_key=d24846636c9a56c3315850f5d23ca744`
-      );
-      const data = await response.json();
+  useEffect(
+    function () {
+      const getMovieDetail = async function () {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${params.id}?api_key=d24846636c9a56c3315850f5d23ca744`
+        );
+        const data = await response.json();
 
-      setMovieDetail(data);
-    };
-    getMovieDetail();
-  }, []);
+        setMovieDetail(data);
+      };
+      getMovieDetail();
+    },
+    [params.id]
+  );
 
   useTitleChange(movieDetail.title);
 
